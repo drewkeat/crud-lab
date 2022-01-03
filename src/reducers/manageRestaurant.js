@@ -1,19 +1,20 @@
 import cuid from 'cuid';
 export const cuidFn = cuid;
  
-export default function manageRestaurants(state = [], action) {
+export default function manageRestaurants(state = {
+  restaurants:[],
+reviews: []
+}, action) {
   switch(action.type) {
     case "ADD_RESTAURANT":
-      console.log("Add Restaurant Called")
       let restaurant = {
         id: cuid(),
-        text: action.name,
+        text: action.text,
         reviews: []
       }
-      return state.concat(restaurant)
-    case "REMOVE_RESTAURANT":
-      console.log("Remove Restaurant Called")
-      return state
+      return {...state, restaurants: [...state.restaurants, restaurant]}
+    case "DELETE_RESTAURANT":
+      return {...state, restaurants: state.restaurants.filter(rest => rest.id != action.restaurantId)}
     default:
       return state
   }
