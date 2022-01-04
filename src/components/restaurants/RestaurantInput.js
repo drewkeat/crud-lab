@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { addRestaurant } from '../../actions/restaurants';
 
 class RestaurantInput extends Component {
   state = {
